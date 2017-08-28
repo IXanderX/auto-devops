@@ -1,0 +1,19 @@
+variables:
+  DATABASE_URL: postgres://runner@postgres:5432/rails-hello-world_test
+  POSTGRES_DB: rails-hello-world_test
+  POSTGRES_USER: runner
+  POSTGRES_PASSWORD: ""
+
+services:
+  - postgres:latest
+
+test:
+  stage: test
+  image: registry.gitlab.com/gitlab-org/herokuish:latest
+
+  before_script:
+    - cp -R . /tmp/app
+  script:
+    - /bin/herokuish buildpack test
+  only:
+    - branches 
