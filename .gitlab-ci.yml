@@ -1,6 +1,8 @@
 test:
   stage: test
   image: registry.gitlab.com/gitlab-org/herokuish:latest
+  services:
+  - postgres:latest
   before_script:
     - cp -R . /tmp/app
   script:
